@@ -1,0 +1,270 @@
+/* ==========================================================================
+   OpenBox Innova – Hoja de estilos global (v1)
+   Paleta core: Negro (#000000) y Blanco (#FFFFFF)
+   Diseño: limpio, contrastado, conversion-first
+   ========================================================================== */
+
+/* -------------------------
+   Variables y Reset suave
+   ------------------------- */
+:root{
+  /* Colores base */
+  --color-bg: #FFFFFF;
+  --color-fg: #000000;
+  --color-muted: #B3B3B3;
+  --color-border: #E6E6E6;
+
+  /* Tipografía y escala */
+  --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --fs-900: clamp(2rem, 3vw + 1rem, 3rem);   /* H1 */
+  --fs-800: clamp(1.5rem, 2.2vw + .8rem, 2.25rem); /* H2 */
+  --fs-700: clamp(1.25rem, 1.6vw + .7rem, 1.5rem); /* H3 */
+  --fs-600: 1.125rem;
+  --fs-500: 1rem;
+  --fs-400: .9375rem;
+
+  /* Espaciado (8pt grid) */
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* Bordes / radios / sombras */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 8px 30px rgba(0,0,0,.08);
+
+  /* Ancho contenedor */
+  --container: 1200px;
+
+  /* Duraciones */
+  --speed-fast: 120ms;
+  --speed: 220ms;
+}
+
+*,*::before,*::after{ box-sizing: border-box; }
+html,body{ height: 100%; }
+body{
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-fg);
+  background: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img{ max-width: 100%; height: auto; display: block; }
+a{ color: inherit; }
+
+/* Contenedor centrado reutilizable */
+.container{
+  width: min(100% - 2rem, var(--container));
+  margin-inline: auto;
+}
+
+/* Tipografía base */
+h1,h2,h3{ line-height: 1.15; margin: 0 0 var(--space-3); }
+h1{ font-size: var(--fs-900); letter-spacing: -.02em; }
+h2{ font-size: var(--fs-800); letter-spacing: -.01em; }
+h3{ font-size: var(--fs-700); }
+p{ margin: 0 0 var(--space-4); font-size: var(--fs-500); }
+small, .meta{ font-size: var(--fs-400); color: #444; }
+
+/* -------------------------
+   Header / Navegación
+   ------------------------- */
+header{
+  position: sticky; top: 0; z-index: 100;
+  background: var(--color-fg); color: var(--color-bg);
+  box-shadow: var(--shadow-sm);
+}
+.header-inner{
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-4) 0;
+}
+.brand{
+  display:flex; align-items:center; gap: var(--space-3);
+}
+.brand img{ height: 40px; width: auto; }
+.brand .site-name{ font-weight: 800; letter-spacing: .02em; }
+
+nav ul{
+  list-style: none; margin: 0; padding: 0;
+  display: flex; align-items: center; gap: var(--space-5);
+}
+nav a{
+  text-decoration: none; font-weight: 700; letter-spacing: .01em;
+  padding: .25rem .125rem; border-radius: var(--radius-sm);
+  transition: opacity var(--speed-fast) ease;
+}
+nav a:hover{ opacity: .8; }
+nav a:focus-visible{
+  outline: 2px solid var(--color-bg);
+  outline-offset: 2px;
+}
+
+/* -------------------------
+   Hero (para Home o tops)
+   ------------------------- */
+.hero{
+  padding: clamp(4rem, 8vw, 8rem) 0;
+  background: #F7F7F7; /* si usas imagen, coloca background-image en línea */
+  color: var(--color-fg);
+}
+.hero .eyebrow{
+  text-transform: uppercase; letter-spacing: .12em;
+  font-weight: 800; font-size: .8rem; opacity: .7; margin-bottom: var(--space-2);
+}
+.hero .lead{ font-size: var(--fs-600); max-width: 60ch; opacity: .9; }
+
+/* -------------------------
+   Botones / CTAs
+   ------------------------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: .8rem 1.1rem; border-radius: var(--radius-sm);
+  border: 2px solid var(--color-fg);
+  background: var(--color-fg); color: var(--color-bg);
+  font-weight: 800; text-decoration: none; cursor: pointer;
+  transition: transform var(--speed) ease, opacity var(--speed-fast) ease;
+}
+.btn:hover{ transform: translateY(-1px); opacity: .9; }
+.btn:active{ transform: translateY(0); opacity: .95; }
+.btn:focus-visible{ outline: 3px solid #fff; outline-offset: 2px; }
+.btn--ghost{ background: transparent; color: var(--color-fg); }
+.btn--light{ background: var(--color-bg); color: var(--color-fg); border-color: var(--color-bg); }
+
+/* Enlaces con flecha para micro-conversiones */
+.link-arrow{
+  font-weight: 800; text-decoration: none; position: relative;
+}
+.link-arrow::after{
+  content: "→"; margin-left: .4rem; transition: transform var(--speed-fast);
+}
+.link-arrow:hover::after{ transform: translateX(2px); }
+
+/* -------------------------
+   Secciones genéricas
+   ------------------------- */
+.section{ padding: var(--space-7) 0; }
+.section--tight{ padding: var(--space-6) 0; }
+.section header{ background: transparent; color: inherit; box-shadow: none; position: static; }
+
+/* Intro de página (uso en Soluciones, Sectores, Casos) */
+.intro{ margin-bottom: var(--space-6); }
+.intro p{ font-size: var(--fs-600); max-width: 70ch; }
+
+/* -------------------------
+   Componentes de “Soluciones”
+   ------------------------- */
+.solutions-grid{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-5);
+}
+.card{
+  grid-column: span 12;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--speed-fast) ease, transform var(--speed-fast) ease;
+}
+.card:hover{ box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card h3{ margin-top: 0; font-size: var(--fs-700); }
+.card .benefits{
+  margin: var(--space-3) 0 var(--space-4);
+  padding-left: 1.2rem;
+}
+.card .benefits li{ margin-bottom: .35rem; }
+
+/* Distribución responsive (3 por fila en desktop) */
+@media (min-width: 900px){
+  .card{ grid-column: span 4; }
+}
+
+/* -------------------------
+   Sectores – listados compactos
+   ------------------------- */
+.sectors{
+  display: grid; gap: var(--space-4);
+}
+.sector-item{
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+.sector-item h3{ margin-bottom: .25rem; }
+
+/* -------------------------
+   Casos de Éxito – bloques
+   ------------------------- */
+.case{
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-5) 0;
+}
+.case:last-child{ border-bottom: 0; }
+.case h3{ margin-bottom: .25rem; }
+.case p{ margin: .35rem 0; }
+
+/* -------------------------
+   Formularios de contacto (si aplica)
+   ------------------------- */
+.form{
+  display: grid; gap: var(--space-4); max-width: 680px;
+}
+.input, textarea, select{
+  width: 100%; padding: .9rem 1rem;
+  border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+  font: inherit; background: #fff; color: var(--color-fg);
+}
+.input:focus, textarea:focus, select:focus{
+  outline: 3px solid #000; outline-offset: 2px;
+}
+
+/* -------------------------
+   Footer
+   ------------------------- */
+footer{
+  background: var(--color-fg); color: var(--color-bg);
+  padding: var(--space-5) 0; text-align: center;
+}
+footer a{ color: var(--color-bg); text-decoration: underline; }
+
+/* -------------------------
+   Utilidades (helpers)
+   ------------------------- */
+.center { text-align: center; }
+.mt-0{ margin-top: 0 !important; }
+.mt-4{ margin-top: var(--space-4) !important; }
+.mt-6{ margin-top: var(--space-6) !important; }
+.mb-0{ margin-bottom: 0 !important; }
+.mb-2{ margin-bottom: var(--space-2) !important; }
+.mb-4{ margin-bottom: var(--space-4) !important; }
+.mb-6{ margin-bottom: var(--space-6) !important; }
+.hidden{ display: none !important; }
+
+/* -------------------------
+   Responsivo
+   ------------------------- */
+@media (max-width: 900px){
+  nav ul{ gap: var(--space-3); }
+  .header-inner{ padding: var(--space-3) 0; }
+  .intro p{ font-size: var(--fs-500); }
+}
+
+/* -------------------------
+   Impresión (básico)
+   ------------------------- */
+@media print{
+  header, footer{ display: none; }
+  a::after{ content: " (" attr(href) ")"; font-size: .8em; }
+}
